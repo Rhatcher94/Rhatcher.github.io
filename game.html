@@ -1,0 +1,221 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 1</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//This is the game configeration file.
+var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
+    scene: {
+        preload: preload,
+        create: create,
+        update: update
+    }
+};
+
+    var player;
+    var stars;
+    var platforms;
+    var cursors;
+    var score = 0;
+    var scoreText;
+    var game = new Phaser.Game(config);
+
+    //Automatically called on load.
+    function preload ()
+    {
+        //The first paramiter is the Variable name that will be used to call this asset. 
+        this.load.image('sky', 'assets/sky.png');
+        this.load.image('ground', 'assets/platform.png');
+        this.load.image('star', 'assets/star.png');
+        this.load.image('bomb', 'assets/bomb.png');
+        this.load.spritesheet('dude', 
+        'assets/dude.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
+    }
+
+    function create ()
+    {
+        //The assets are painted in order of call. IE. The Sky is painted and then the star over top.
+        // X value, Y value, Asset to create.        
+        this.add.image(400, 300, 'sky');
+
+        //Creates a new static physics group assigned to platforms.
+        //There are 2 types of physics groups, Static and Dynamic, Static canmt move, dynamic can.
+        platforms = this.physics.add.staticGroup();
+
+        //Items created in a physics group will automatically add physics to its children.
+        //This first platform is scaled up to cover the entire stage, after scalling it we need to tell the physics world to redraw the physics.
+        platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+        platforms.create(600, 400, 'ground');
+        platforms.create(50, 250, 'ground');
+        platforms.create(750, 220, 'ground');       
+
+        //Creates the player sprite, The first params are the position and the second is the asset to use.
+        //This sprite has dynamic physics
+        player = this.physics.add.sprite(100, 450, 'dude');
+        //This sets the bouciness of the player. 
+        player.setBounce(0.2);
+        // This sets where the player can run, world bounds means he is bound to the stage. 
+        player.setCollideWorldBounds(true);
+
+        //The higher this value the heavier the player feels. 
+        player.body.setGravityY(300);
+
+        //Adds a colider to the player object that looks for collisions with platforms, You can optionally add your owd call back function. 
+        this.physics.add.collider(player, platforms);
+
+
+        // This adds four properties, Up Down Left Right that are instances of key objects. 
+        cursors = this.input.keyboard.createCursorKeys();
+
+        //Here I create a star physics group.
+        stars = this.physics.add.group({
+            key: 'star',
+            repeat: 11,
+            setXY: { x: 12, y: 0, stepX: 70 }
+        });
+
+        //This allows us to loop through all the children and set different bouce velocitys. 
+        stars.children.iterate(function (child) {
+
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+
+        });
+        //Add a collider to collide with the plat forms. 
+        this.physics.add.collider(stars, platforms);
+        //Add a colider to check for player collisions and use our own call back.
+        this.physics.add.overlap(player, stars, collectStar, null, this);
+
+        //Creates the baddies objects.
+        bombs = this.physics.add.group();
+        //Add a platform collider. 
+        this.physics.add.collider(bombs, platforms);
+        //Add a collider for the player and add our own call back function.
+        this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+
+
+        //This creates and initializes the score text asset.
+        //The first 2 values are the coordinates. and the next is the deafult value then the style.  
+        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+        //This creates the animations for the player. 
+        // The start and end are the frames on the sprite sheet to use for that animation. 
+        this.anims.create({
+            key: 'left',
+            frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+            frameRate: 10,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: 'turn',
+            frames: [ { key: 'dude', frame: 4 } ],
+            frameRate: 20
+        });
+
+        this.anims.create({
+            key: 'right',
+            frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: -1
+        });
+    }
+
+    function update ()
+    {
+        if (cursors.left.isDown)
+        {
+            player.setVelocityX(-160);
+
+            player.anims.play('left', true);
+        }
+        else if (cursors.right.isDown)
+        {
+            player.setVelocityX(160);
+
+            player.anims.play('right', true);
+        }
+        else
+        {
+            player.setVelocityX(0);
+
+            player.anims.play('turn');
+        }
+
+        if (cursors.up.isDown && player.body.touching.down)
+        {
+            player.setVelocityY(-500);
+        }
+    }
+
+    //The callback function for the star and player.
+    function collectStar (player, star)
+    {
+        //Remove the star.
+        star.disableBody(true, true);
+        //Add to the score. 
+        score += 10;
+        scoreText.setText('Score: ' + score);
+        
+        //See if there are still active stars.
+        if (stars.countActive(true) === 0)
+        {
+            stars.children.iterate(function (child) {
+
+                child.enableBody(true, child.x, 0, true, true);
+
+            });
+
+            // Get the players location. 
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+            //Create a bomb at our new x position. 
+            var bomb = bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+        }
+    }
+
+    //Call back function for bomb and player
+    function hitBomb (player, bomb)
+    {
+        this.physics.pause();
+
+        //Change the tint of the player to red.
+        player.setTint(0xff0000);
+
+        //Turn the player towards the camera. 
+        player.anims.play('turn');
+
+        //End the game. 
+        gameOver = true;
+    }
+
+</script>
+
+</body>
+</html>
