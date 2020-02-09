@@ -156,6 +156,11 @@ section.resume-section .resume-item .resume-date {
   color: #cc2936 !important;
 }
 
+.text-link {
+  color: #495057 !important;
+  font-style: italic;
+}
+
 a {
   color: #cc2936;
 }
