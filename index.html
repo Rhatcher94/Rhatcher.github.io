@@ -1,64 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Rob Hatcher</title>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style/style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Rob Hatcher</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+<script src="js/app.js"></script> 
+  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">  
+<link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link href="style/style.css" rel="stylesheet">
 </head>
-<body>
-<!--================ Start Header Area =================-->
-<header class="header_area">
-  <div class="main_menu">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-          <ul class="nav navbar-nav menu_nav justify-content-end">
-            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-            <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">Pages</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                <li class="nav-item"><a class="nav-link" href="portfolio-details.html">Portfolio Details</a></li>
-              </ul>
-            </li>
-            <li class="nav-item submenu dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-               aria-expanded="false">Blog</a>
-              <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-              </ul>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          </ul>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">Rob Hatcher</span>
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="resources/images/RobHatcher.png" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#experience">My Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#awards">Certificates</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+      <div class="w-100">
+        <h1 class="mb-0">Rob
+          <span class="text-primary">Hatcher</span>
+        </h1>
+        <div class="subheading mb-5">· (343) 363-9974 ·
+          <a href="mailto:rhatcher@gmx.com">rhatcher@gmx.com</a>
+        </div>
+        <p class="lead mb-5">
+            I am a young developer eager to learn and gain new skills. I pride myself on always learning and improving my development stratagies.
+        </p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/robert-hatcher-21116917a/">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://github.com/Rhatcher94/Projects">
+            <i class="fab fa-github"></i>
+          </a>          
         </div>
       </div>
-    </nav>
-  </div>
-</header>
-<!--================ End Header Area =================-->
+    </section>
 
-  
+    <hr class="m-0">
 
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="experience">
+      <div class="w-100">
+        <h2 class="mb-5">My Projects</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">TODO List</h3>
+            <div class="subheading mb-3">PHP/Laravel</div>
+            <p>
+              A simple web app built with laravel featuring an account system and database integration. 
+            </p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">
+              <form action="https://github.com/Rhatcher94/Projects/tree/master/CRUD_TODO" target="_blank">
+                <button type="submit" class="btn btn-danger">TODO App</button>
+            </form>
+          </span>
+          </div>
+        </div>
+
+        
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="education">
+      <div class="w-100">
+        <h2 class="mb-5">Education</h2>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+          <div class="resume-content">
+            <h3 class="mb-0">St.Lawrence College</h3>
+            <div class="subheading mb-3">School of Applied Science and Computing</div>
+            <div>Computer Programmer Analyst</div>
+            <p>GPA: 3.9</p>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">September 2018 - Present</span>
+          </div>
+        </div>
+
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+          <div class="resume-content">
+            <h3 class="mb-0">Frontenac Secondary School</h3> 
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">September 2008 - June 2012</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
+      <div class="w-100">
+        <h2 class="mb-5">Skills</h2>
+
+        <div class="subheading mb-3">Programming Languages &amp; Tools</div>
+        <ul class="list-inline dev-icons">
+          <li class="list-inline-item">
+            <i class="fab fa-html5" data-toggle="tooltip" data-placement="top" title="HTML5"></i>             
+            </i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fab fa-css3-alt" data-toggle="tooltip" data-placement="top" title="CSS3"></i>
+          </li>                    
+          <li class="list-inline-item">
+            <i class="fab fa-react" data-toggle="tooltip" data-placement="top" title="React"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fab fa-node-js" data-toggle="tooltip" data-placement="top" title="Node-JS"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="fab fa-sass" data-toggle="tooltip" data-placement="top" title="Sass"></i>
+          </li>          
+          <li class="list-inline-item">
+            <i class="fab fa-wordpress" data-toggle="tooltip" data-placement="top" title="Wordpress"></i>
+          </li>                   
+          <li class="list-inline-item">
+            <i class="fab fa-npm" data-toggle="tooltip" data-placement="top" title="NPM"></i>
+          </li>
+          <br>
+          <li class="list-inline-item">
+            <i class="devicon-cplusplus-plain" data-toggle="tooltip" data-placement="top" title="C++"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="devicon-csharp-plain" data-toggle="tooltip" data-placement="top" title="C#"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="devicon-mysql-plain" data-toggle="tooltip" data-placement="top" title="MySql"></i>
+          </li>
+          <li class="list-inline-item">
+            <i class="devicon-java-plain" data-toggle="tooltip" data-placement="top" title="Java"></i>
+          </li>    
+        </ul>
+
+        <div class="subheading mb-3">Workflow</div>
+        <ul class="fa-ul mb-0">
+          <li>
+            <i class="fa-li fa fa-check"></i>
+            Mobile-First, Responsive Design</li>
+          <li>
+            <i class="fa-li fa fa-check"></i>
+            Quallity Assurence Testing &amp; Debugging</li>
+          <li>
+            <i class="fa-li fa fa-check"></i>
+            </li>
+          <li>
+            <i class="fa-li fa fa-check"></i>
+            Agile Development &amp; Scrum</li>
+        </ul>
+      </div>
+    </section>
+    <hr class="m-0">
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+      <div class="w-100">
+        <h2 class="mb-5">Certificates</h2>
+        <ul class="fa-ul mb-0">
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            St.Lawrence College Deans List</li>
+          <li>
+            <i class="fa-li fa fa-trophy text-warning"></i>
+            Frontenac Secondary School Honors in Computer Science</li>         
+        </ul>
+      </div>
+    </section>
+  </div>  
 </body>
 </html>
